@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NetLink - Simulador de Servidores</title>
+    <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+            color: #111;
+        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: #1e3a8a; margin-bottom: 10px; }
+        header p { color: #555; font-size: 14px; }
+        section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        #controles { text-align: center; }
+        label { display: inline-block; margin: 10px 10px 5px 0; font-weight: 500; }
+        button { background-color: #2563eb; color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; margin: 6px; font-size: 14px; transition: background-color 0.2s; }
+        button:hover { background-color: #1e40af; }
+        #network { width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 8px; background: #fafafa; }
+        #acciones { text-align: center; }
+        .botones { margin-top: 15px; }
+        .algoritmo-grupo { display: inline-block; margin: 10px; padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px; background: #f9fafb; }
+        .algoritmo-grupo h4 { margin: 0 0 10px 0; color: #374151; font-size: 12px; text-transform: uppercase; }
+        #resultado { text-align: center; }
+        #result { margin: 15px auto; background: #f8f9fa; padding: 15px; border-radius: 8px; max-width: 900px; text-align: left; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; white-space: pre-wrap; border: 1px solid #e5e7eb;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NetLink - Optimización de Conexiones</h1>
+        <p>Simula servidores y aplica algoritmos de optimización de red</p>
+    </header>
+
+    <main>
+        <section id="controles">
+            <button id="btn-cargar-real" style="background-color: #059669;">Cargar Dataset</button>
+        </section>
+
+        <section id="network"></section>
+
+        <section id="acciones">
+            <h2>Ejecutar Algoritmos de Optimización</h2>
+
+            <div style="margin: 20px 0;">
+                <label for="source">Servidor origen:</label>
+                <select id="source"></select>
+
+                <label for="target" style="margin-left: 20px;">Servidor destino:</label>
+                <select id="target"></select>
+            </div>
+
+            <div class="botones">
+                <div class="algoritmo-grupo">
+                    <h4>Caminos más cortos</h4>
+                    <button id="run-dijkstra">Dijkstra</button>
+                    <button id="run-bellman">Bellman-Ford</button>
+                    <button id="run-floyd">Floyd-Warshall</button>
+                </div>
+
+                <div class="algoritmo-grupo">
+                    <h4>Árboles de expansión</h4>
+                    <button id="run-prim">Prim</button>
+                    <button id="run-kruskal">Kruskal</button>
+                </div>
+
+                <div class="algoritmo-grupo">
+                    <h4>Flujo máximo</h4>
+                    <button id="run-ff">Ford-Fulkerson</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="resultado">
+            <h3>Resultado:</h3>
+            <pre id="result">Carga el dataset y ejecuta un algoritmo para ver los resultados aquí.</pre>
+        </section>
+    </main>
+
+ 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

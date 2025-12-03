@@ -1,0 +1,10 @@
+graph {
+	S0 [label="Servidor 0"]
+	S1 [label="Servidor 1"]
+	S2 [label="Servidor 2"]
+	S3 [label="Servidor 3"]
+	S4 [label="Servidor 4"]
+	S5 [label="Servidor 5"]
+	S0 -- S3 [label="7ms / cap:13"]
+	S2 -- S3 [label="36ms / cap:19"]
+}
