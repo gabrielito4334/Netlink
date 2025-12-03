@@ -2,3 +2,5 @@ flask
 openpyxl
 numpy
 random
+gunicorn
+
